@@ -15,6 +15,7 @@ public class Main {
 
         String line;
 
+        System.out.println("Reading in meals information from file...");
         while ((line = indata.fileReadLine()) != null) {
             String[] fields = line.split(",");
             cookbook.addElementWithStrings(fields[0], fields[1], fields[2]);
@@ -33,7 +34,8 @@ public class Main {
         System.out.println("1. List All Items");
         System.out.println("2. List All Items by Meal");
         System.out.println("3. Search by Meal Name");
-        System.out.println("4. Exit");
+        System.out.println("4. Do Control Break");
+        System.out.println("5. Exit");
         System.out.print("Please Enter your Choice: ");
     }
 
@@ -55,10 +57,16 @@ public class Main {
                     searchByName();
                     break;
                 case "4":
+                    // doControlBreak();
+                    break;
+                case "5":
                     userContinue = false;
                     break;
             }
         }
+
+        System.out.println("Goodbye");
+        System.exit(0);
     }
 
     private void listByMealType() {
@@ -68,12 +76,13 @@ public class Main {
 
         System.out.println("Which Meal Type");
 
+        // Generate the menu using the ordinal value of the enum
         for (MealType m : MealType.values()) {
             System.out.println((m.ordinal() + 1) + ". " + m.getMeal());
         }
 
         System.out.print("Please Enter your Choice: ");
-        String ans = keyboard.next();
+        String ans = keyboard.nextLine();
 
         try {
             int ansNum = Integer.parseInt(ans);
